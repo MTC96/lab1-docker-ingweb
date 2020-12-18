@@ -97,7 +97,7 @@ app.get('/users', async function (req, res) {
  *          schema:
  *              $ref: '#/definitions/User'
  *      responses:
- *          '200':
+ *          '201':
  *              description: Successfully created
  *          '400':
  *              description: Email already registered
@@ -116,7 +116,7 @@ app.post('/users', async function (req, res) {
         }
         const user = new User(req.body);
         await user.save();
-        res.status(200).json({
+        res.status(201).json({
             ok: true,
             user
         });
@@ -147,7 +147,7 @@ app.post('/users', async function (req, res) {
  *          schema:
  *              $ref: '#/definitions/User'
  *      responses:
- *          '200':
+ *          '201':
  *              description: Successfully updated
  *          '400':
  *              description: Email already registered
@@ -178,7 +178,7 @@ app.put('/users/:id', async function (req, res) {
             }
         }
         const updatedUser = await User.findByIdAndUpdate(uid, fields, {new: true});
-        res.status(200).json({
+        res.status(201).json({
             ok: true,
             user: updatedUser
         });
